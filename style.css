@@ -1,0 +1,1353 @@
+ /*
+Theme Name: Woolwich Makers Market
+Theme URI: https://adelei.co.uk/
+Description: Theme made for my Masters project
+Version: 1.0
+Author URI: built using resources from https://eyelearn.org/seewp-vanilla/
+*/
+
+/* ———————————————————————————— template notes 
+
+starts with mobile first all site rules, 
+then specific area rules, 
+continues through media queries
+
+Header: Contains Logo and main nav
+
+page-home: Static page with some dynamic content pulled from the content templates (content-event, content-product, content-maker-profile)
+
+single-maker-profile: Dynamic Posts containing ACF meta fields
+
+single-product: Dynamic Posts containing ACF meta fields
+
+single-event: Dynamic Posts containing ACF meta fields
+
+About Us: Static page
+
+Archive: - archive-event: Full list of content parts for the Dynamic Posts (single-event) containing ACF meta fields
+ 		 - archive-product: Full list of content parts for the Dynamic Posts (single-product) containing ACF meta fields
+ 		 - archive-maker-profile: Full list of content parts for the Dynamic Posts (single-maker-profile) containing ACF meta fields
+
+Content: - content-event:
+ 		 - content-product:
+ 		 - content-maker-profile:
+
+Footer: side nave 
+
+Template Parts: Some parts of the content are created using template parts, these come after the individual pages
+ 				There is repution for these stylings because of the nature of how wordpress pulls content in
+
+Pseudo Classes: In the prototype for the website I used psuedo styling, however these classes do not work in wordpress, so some have to have direct classes or IDs
+
+*********************** END template notes ———————————————————————————— */
+
+/*—————————————————————————————————————————————————————————————————*/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*____mobile first___________mobile first______________mobile first____________mobile first___________________*/
+
+/* ------- colour ref----------------------*/
+
+:root{
+
+	/*vibrant colour--*/
+		--purple:#745296;
+		--teal:#258ea6;
+		--green:#a4c7ad;
+		--pink:#f492ca;
+		--orange:#ffcc99;
+	
+	/*pastel--*/
+	
+		--pastel-purple:#c4bccc;
+		--pastel-teal:#c6e8e1;
+		--pastel-green:#d4dcb0;
+		--pastel-pink:#f5d4e5;
+		--pastel-orange:#f1e3d3;
+		
+	/*tones--*/
+		--black:#000000;
+		--slate:#383d3b;
+		--griege:#c4bcac;
+		--beige:#e6dcc9;
+		--pale-yellow:#f2edd0;
+	
+	/*named-properties--*/	
+		--button-text:#DFDFDF;
+		--background-colour: #EDECEA;
+		--text-colour: #202020;
+	}
+
+/*_____all site CSS__________________________________________________________________________________________________________________________________________________________________________*/
+
+
+:root{
+	background-image: url(images/paper-v3.svg);
+	background-size: 50px;
+	background-color: var(--background-colour);
+	color: var(--text-colour);
+}
+
+body{
+	box-sizing: border-box;
+	font-family: 'Jost', Tahoma, 'Geneva', Verdana, sans-serif;
+	line-height: 1.7em;
+	font-weight: 300;
+}
+
+main{
+	padding: 10px 20px;
+	margin: auto;
+}
+
+p{
+	padding-bottom: 20px;
+}
+
+p:last-of-type{
+	padding-bottom: 40px;
+}
+
+
+h1{
+	font-size: 1.7em;
+	font-weight:900;
+	line-height: 1.3em;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.home h2{
+	font-weight: 900;
+}
+
+h2{	
+	text-align: center;
+	font-size: 1.5em;
+	font-weight:500;
+	line-height: 1.3em;
+	justify-self: center;
+	grid-column: 1/3;
+	padding-bottom: 10px;
+
+}
+
+h3{
+	font-size: 1.1em;
+	font-weight: 500;
+}
+
+dl{
+	padding-bottom: 20px;
+}
+
+dt{
+	font-weight: 700;
+}
+
+figcaption{
+	font-family: 'Special Elite', 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+	text-align: center;
+	font-size: .8em;
+	line-height: 1.3em;
+	padding-bottom: 20px;
+}
+
+main img{
+	max-width: 100%;
+  height: auto;
+}
+
+
+a:hover{
+	background-color: var(--pastel-teal);
+}
+
+
+a{
+	color: var(--text-colour);
+	text-decoration: none;
+}
+
+h3{
+	text-align: center;
+}
+
+h3 ~ p{
+	text-align: center;
+}
+/*_____header_______________________________________________________________________________________________________*/
+
+header img{
+	display: block;
+	margin:auto;
+	max-width: 150px;
+	max-height: 150px;
+}
+
+header{
+	padding: 20px 20px 20px 20px;
+	display: grid;
+	background-image:
+		url(images/gridlines.svg);
+		background-size: 40px;
+}
+
+svg{
+	width: 40px;
+	padding-bottom: 10px;
+}
+
+header nav ul{
+	justify-self: center;
+	
+}
+
+header nav ul{
+	display: grid;
+	font-family: 'Special Elite', cursive;
+	justify-items: center;
+	grid-row-gap: 20px;
+}
+
+header nav a:hover{
+	background-color: var(--purple);
+	padding: 5px;
+	color: var(--background-colour);
+}
+
+.nav-toggle-label{
+	justify-self: center;
+}
+
+header nav{
+	display: none;
+}
+ 
+.nav-toggle {
+	 display: none;
+}
+ 
+.nav-toggle:checked ~ nav {
+	 display:contents;
+}
+
+.h-event ul{
+	max-height: 100px;
+	align-self: center;
+}
+
+.h-event h2{
+	grid-column: 2/3;
+	justify-self: start;
+}
+
+
+.h-event img{
+	max-height: 150px;
+	width: auto;
+}
+
+.h-event ul img {
+	padding-top: 5px;
+	width: 16px;
+  }
+
+.h-event{
+	max-width: 600px;
+}
+/*_____footer_______________________________________________________________________________________________________________________________*/
+footer{
+	padding-top: 20px;
+	background-image:
+		url(images/gridlines.svg);
+		background-size: 40px;
+}
+
+footer p{
+	padding-top: 5px;
+}
+
+/*_____home_______________________________________________________________________________________________________________________________*/
+
+.home h1{
+	display: none;
+}
+
+
+#index-img img{
+	box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+
+}
+
+#index-img{
+	grid-column: 1/3;
+	justify-self: center;	
+}
+
+.home main div{
+	grid-column: 1/3;
+	justify-self: center;
+	padding-bottom: 40px;
+}
+
+
+#index-tag{
+	padding-bottom: 40px;
+}
+
+.home h2 + p{
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.home .product-quick-ref{	
+	padding: 20px;
+	margin-bottom: 20px;
+	border-top: var(--slate) 1px;
+	border-bottom: var(--slate) 1px;
+	border-radius: 1em;
+	border-style: dashed;
+}
+
+.home .maker-quick-ref p{
+	padding: 0;
+}
+
+
+
+.home .maker-quick-ref{
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+/*___maker profile _____________________________________________________________________________________________________________________________*/
+
+
+.maker-profile h1{
+		display: none;
+}
+
+.maker-profile h1 +h2{
+	font-weight: 900;
+}
+
+
+.maker-profile h1 ~ h2 {
+	display: none;
+}
+
+.maker-profile picture{
+	grid-column: 1/3;
+	justify-self: center;
+}
+
+.maker-profile figure{
+	max-width: 190px;
+}
+
+
+.maker-profile-template-default main a{
+	text-decoration: underline;
+}
+
+
+.polaroid-image{
+	margin: auto;
+	grid-column: 1/3;
+	background-color: #ffffff;
+	padding: 10px 10px 0px;
+	-webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+	justify-self: center;
+	margin-bottom: 20px;
+}
+
+.bio figure{
+	clip-path: polygon(0 0, 77% 0, 96% 100%, 0 100%);
+	float: left;
+}
+
+.bio figure:nth-of-type(even){
+	clip-path: polygon(23% 0, 100% 0, 100% 100%, 0 100%);
+	float: right;
+}
+
+
+.maker-quick-ref h3{
+	font-weight: 700;
+	font-size: 1em;
+	grid-column: 1/2;
+}
+
+.maker-quick-ref p{
+	grid-column: 2/3;
+}
+
+.bio{
+		grid-column: 1/3;
+}
+
+.maker-profile ul{
+	margin-bottom: 50px;
+	grid-column: 1/2;
+}
+
+/*.maker-profile h3{
+	text-align: left;	
+}*/
+
+
+.maker-profile .product-quick-ref {
+	
+	width: 300px;
+	text-decoration: none;
+	border-top: var(--slate) 1px;
+	border-bottom: var(--slate) 1px;
+	border-radius: 1em;
+	border-style: dashed;
+	padding: 20px;
+	margin: 0 auto 30px;
+}
+
+/*________product rules____________________________________________________________________________________________________________________________________*/
+
+.product-listing p{
+	grid-column: 1/3;
+}
+
+.product-quick-ref {
+	display: grid;
+}
+
+h1{
+	grid-column: 1/3;
+	justify-self: center;
+}
+
+.product-quick-ref figure{
+	grid-column: 1/3;
+	justify-self: center;
+}
+
+.product-quick-ref h2{
+	font-weight:300;
+	font-size: 1.2em;
+	grid-column: 1/3;
+	font-style: italic;
+}
+
+
+.product-quick-ref dl{
+	grid-column: 1/3;
+	justify-self: center;
+	display: grid;
+	grid-column-gap: 20px;
+	justify-content: space-evenly;
+	grid-row-gap: 10px;
+	justify-items: start;
+}
+
+.product-quick-ref dt:nth-of-type(1){
+    display: none;
+}
+
+
+.product-quick-ref dd:first-of-type{
+	grid-column: 1/3;
+	justify-self: center;
+	font-size: 1.4em;
+	font-weight: 900;
+}
+
+.product-quick-ref dt{
+	grid-column: 1/2;
+}
+
+.product-quick-ref dd{
+	grid-column: 2/3;
+}
+
+.product-quick-ref p:first-of-type{
+	justify-self: center;
+	padding-bottom: 30px;
+}
+
+.product-listing .maker-quick-ref{
+	margin-bottom: 20px;
+
+}
+
+.product-listing .maker-quick-ref{
+	justify-content: center;
+}
+
+/*----buttons------------------------*/
+
+
+.how-to-buy{
+	color: var(--button-text);
+	background-color: var(--purple);
+	padding: 10px;
+	border-radius: 0.75em;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, .5);
+	text-decoration: none;
+}
+
+.how-to-buy:hover{
+	background-color: #c4bccc;
+	color: #745296;
+	text-decoration: underline;
+}
+
+/* -----how made---------------------*/
+
+.how-made{
+	display: grid;
+}
+
+
+
+
+.how-made figure{
+	grid-column: 1/3;
+	justify-self: center;
+}
+
+#how-made-inline{
+	grid-column: 1/3;
+	display: grid;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+	justify-self: center;
+}
+
+#how-made-inline h3{
+	grid-column: 1/2;
+}
+
+#how-made-inline ul{
+	grid-column: 2/3;
+}
+
+/* ---who made it---------------------*/
+
+.product-listing figure + p {
+	display: none;
+}
+
+a[href^="../meet-the-maker/"]{
+	color: var(--purple);
+	background-color: var(--pastel-purple);
+	padding: 10px;
+	border-radius: 0.75em;
+	text-decoration: none;
+}
+
+a[href^="../meet-the-maker/"]:hover{
+	background-color:#745296;
+	color:#DFDFDF;
+	text-decoration: underline;
+}
+
+.who-made-it{
+	background-image: 
+						url(images/fabricpaper-large.jpg);
+	background-repeat: no-repeat;
+	background-position:center;
+	padding: 10px;					
+
+}
+
+.product-template-default ul:last-of-type{
+	margin-bottom: 40px;
+}
+
+
+/*_______archive_______________________________________________________________________________________________________________________*/
+
+/*_______archive______all*/
+.archive-page{
+	justify-items: center;
+}
+
+
+
+.archive-page a{
+	text-decoration: none;
+}
+
+
+
+.archive-page h1 ~ p{
+	text-align: center;
+}
+/*product*/
+.archive-page .product-quick-ref{
+	padding: 20px;
+	margin-bottom: 20px;
+	border-top: var(--slate) 1px;
+	border-bottom: var(--slate) 1px;
+	border-radius: 1em;
+	border-style: dashed;
+}
+
+
+.product-quick-ref h3{
+	grid-column: 1/3;
+	text-align: center;
+	font-weight: 300;
+	font-style: italic;
+}
+.archive-page .product-quick-ref{
+	grid-column: 1/3;
+}
+
+
+/* -----maker ---------------------*/
+
+.maker-quick-ref figure{
+	max-width: 230px;
+}
+
+.archive .maker-quick-ref{
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.archive-page .maker-quick-ref p{
+	padding: 0;
+}
+
+
+/*__event-posts_________________________________________________________________________________________________________________________________________________________________*/
+
+.h-event{
+	grid-column: 1/3;
+	display: grid;
+	padding: 20px 0 30px;
+	justify-self: center;
+	margin-bottom: 40px;
+}
+
+
+.h-event picture{
+	display: none
+}
+
+
+.h-event ul{
+	padding-bottom: 0px;
+	grid-column: 2/3;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+}
+
+.h-event ul img{
+
+	padding-top: 5px;
+}
+
+.h-event li:nth-of-type(odd){
+	justify-self: center;
+}
+
+.p-name{
+	padding-bottom: 10px;
+	justify-self: start;
+}
+
+
+/*_____website-listing____________________________________________________________________________________________________________________________________*/
+
+iframe{
+	max-width: 100%;
+
+}
+
+/*305px---------------------*305px----------------*340px----------------*340px----------------*340px----------------*340px----------------*/
+ 
+@media (min-width: 305px){
+	
+	/*home*/
+	main a{
+		margin: auto;
+	}
+
+	.home .product-quick-ref{	
+		width: 240px;
+	}
+
+	#index-img{
+		max-width: 400px;
+		margin: auto;
+	}
+	/*product*/
+	.product-listing figure{
+		max-width: 300px;
+	}
+
+	.who-made-it figure{
+		max-width: 190px;
+	}
+
+	/* -----product  template parts-------------*/
+	
+	
+	.archive-page .product-quick-ref{	
+		width: 240px;
+	}
+	
+	/* -----maker template parts---------------------*/
+	.maker-quick-ref{
+	display: grid;
+	grid-template-columns: 140px;
+	justify-content: center;
+	}
+
+
+	.maker-quick-ref h3{
+		text-align: left;
+	}
+
+	.maker-quick-ref p{
+		text-align: left;
+	}
+	
+	
+
+}
+/*____media @500___media @500__media @500__media @500__media @500__media @500__media @500__media @500___media @500__media @500__media @500__media @500__media @500__media @500___*/
+
+/*_____ header________________________________________________________________________________________*/
+   
+@media (min-width: 500px){
+	/*nav ul{
+		width: 400px;
+	}
+
+ /*__event________________________________________________________________________________________________*/
+	.h-event {
+		grid-template-columns: 1fr 3fr;
+	}
+
+ .h-event picture{
+	display: inherit;
+	justify-self: start;
+	grid-row: 2;
+	}
+
+	
+	
+}
+
+
+/*____media @700______media @700_____media @700_____media @700_____media @700_____media @700___media @700_____media @700_____media @700_____media @700_______@700_*/
+
+/*_____all site CSS___________________________________________________________________________________________*/
+@media (min-width: 700px){
+	body{
+		font-size: 1.25em;
+	}
+
+	main{
+		max-width: 700px;
+	}
+
+
+	/*--nav-toggle--------------------------*/
+	
+	header{
+		padding-bottom: 80px;
+	}
+	
+	header img{
+		max-width: 200px;
+		max-height: 200px;
+	}
+	
+/*____maker profile__________________________________________________________________________________________*/
+
+	.maker-profile .maker-quick-ref{
+		grid-template-columns: 180px;
+		grid-row-gap: 15px;
+		padding-top: 10px;
+	}
+	
+	
+	/*--maker- product-template-part--*/
+	.maker-profile .product-quick-ref {
+		
+		width: 400px;
+		
+	}
+
+	/*___Product_________________________________________________________________________________________________*/
+
+
+	/*--Product-maker-template-part--*/
+		.product-listing .maker-quick-ref{
+			grid-template-columns: 180px auto;
+		}
+	
+	
+	/*--archive pages + product template parts------------------------_______________________________________________________________________________________________________*/
+
+	.archive-page .product-quick-ref {
+		grid-template-rows: 60px 350px auto;
+	}
+
+	
+	.archive-page .product-quick-ref figure{
+		align-self: center;
+	}
+
+	.archive-page .maker-quick-ref figcaption{
+		font-size: 1em;	
+	}
+
+
+	/*--home pages + template parts*/
+	.home .product-quick-ref {
+		grid-template-rows: 60px 350px auto;
+	}
+
+	.home .product-quick-ref figure{
+		align-self: center;
+	}
+	.home .polaroid-image{
+		margin: 0;
+		margin-bottom: 20px;
+	}
+	.home .maker-quick-ref {
+		grid-template-rows: 400px auto;
+	}
+	.archive .polaroid-image{
+		margin: 0;
+		margin-bottom: 20px;
+	}
+
+	.home .maker-quick-ref figcaption{
+		font-size: 1em;	
+	}
+
+	
+
+/*__archive___________________________________________________________________________________________________*/
+	
+	.archive-page h1 ~ p{
+		grid-column: 1/3;
+	}
+
+	.archive-page a {
+		align-self: start;
+	}
+
+	.archive-page .maker-quick-ref{
+		grid-column: initial;
+		grid-template-rows: 400px auto;
+		font-size: initial;
+	}
+
+	
+	.archive-page{
+		font-size: initial;
+	}
+
+	.archive-page{
+		max-width: initial;
+	}
+
+
+/*__event_______________________________________________________________________________________________________*/
+	 .h-event {
+		grid-template-columns: 1fr 3fr;
+		grid-column: 1/3;
+	}
+
+
+
+/*__HOME_______________________________________________________________________________________________________*/
+	
+	#index-img{
+
+		padding-bottom: 10px;
+
+	}
+
+	#index-tag{
+	 padding-bottom: 60px;
+	}
+
+		
+	.home main div{
+		font-size: initial;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 20px;
+	}
+
+
+	.home .h-event{
+		font-size: initial;
+	}
+
+	.home div a{
+		grid-column: initial;
+	}
+
+	.home div a:last-of-type {
+		grid-column: 1/3;
+	}
+
+	.home .product-quick-ref:last-of-type {
+		grid-column: 1/3;
+		justify-self: center;
+	 }
+	/*_____footer______________________________________________________________*/
+ 
+	 
+	 footer ul{
+		 display: grid;	 
+		 justify-content: center;
+		 grid-column-gap: 30px;
+	 }
+
+	 footer li{
+		grid-row: 1/2;
+	 }
+	 footer p{
+		 text-align: center;
+	 }
+
+}
+
+
+
+/*____media @900_______media @900_____media @900_____media @900_____media @900_____media @900_____media @900__media @900_______media @900_____media @900_____media @900_____media @900*/
+
+/*_____all site CSS_______________________________________________________________________________________________________*/
+
+@media (min-width: 900px){
+
+	.archive-page{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 30px;
+	}
+
+	.archive-page .product-quick-ref{
+		grid-column: initial;
+		grid-template-rows: 60px 180px auto;
+		font-size: initial;
+	}
+
+	
+	
+/*_____header_______________________________________________________________________________________________________*/
+
+	header img{
+		max-width: 300px;
+		max-height: 300px;
+	}
+
+	svg{
+		display: none;
+	}
+
+	header nav{
+		display: inherit;
+		font-weight: 900;
+	}
+
+	header nav ul{
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		width: 800px;
+		font-size: 1em;
+		background-image: none;
+	}
+
+	header nav li{
+		padding: 10px 10px 10px 30px;
+	}
+
+	header{
+		justify-items: center;
+	}
+
+/*__maker profile_______________________________________________________________________________________________________*/
+
+
+	.maker-profile .maker-quick-ref{
+		grid-column-gap: 20px;
+	}
+
+	.maker-profile h2{
+			grid-column: 1/3;
+		}
+
+	.maker-profile figure{
+			grid-column: 1/2;
+		}
+
+	.bio{
+			grid-column: 1/3;
+		}
+
+	.maker-profile ul{
+			grid-column: 2/3;
+	}
+
+	[src="images/meet-maker-banner.png"] {
+		display: inherit;
+		margin-left: 10px;
+	}
+
+	.maker-quick-ref h2{
+		display: none;
+	}
+
+	.maker-profile .maker-quick-ref{
+		grid-template-columns: auto;
+	}
+
+	.maker-profile figure{
+			grid-column: 1/2;
+			align-self: end;
+		}
+
+	.maker-profile picture{
+		grid-column: 1/4;
+		justify-self: start;
+	}
+	.maker-profile picture img{
+		width: 300px;
+	}
+
+	.maker-profile .maker-quick-ref h3{
+			grid-column: 2/3;
+	}
+
+	.maker-profile .maker-quick-ref p{
+		grid-column: 3/4;
+	}
+
+	.maker-profile .maker-quick-ref figure{
+		grid-row: 2/6;
+	}
+
+	.maker-profile ul{
+		margin-bottom: 50px;
+		grid-column: 1/2;
+	}
+/*--maker- product-template-part-------------------------------*/
+		.maker-profile .product-quick-ref figure{
+			grid-column: 1/3;
+			
+		}
+/*--archive pages + product template parts------------------------_______________________________________________________________________________________________________*/
+
+	.archive-page .product-quick-ref {
+		grid-template-rows: 60px 350px auto;
+	}
+
+
+	.archive-page .product-quick-ref figure{
+		
+		align-self: center;
+	}
+
+	.archive-page .maker-quick-ref figcaption{
+		font-size: 1em;	
+	}
+
+	/*--home pages + template parts*/
+	.home .product-quick-ref {
+		grid-template-rows: 60px 350px auto;
+	}
+
+	.home .maker-quick-ref figcaption{
+		font-size: 1em;	
+	}
+
+
+	.home .product-quick-ref figure{
+	
+		align-self: center;
+	}
+
+}
+
+/*_____media @1000______media @1000______media @1000______media @1000______media @1000______media @1000______media @1000___*/
+@media (min-width: 1000px)
+{	
+	main{
+		max-width: 800px
+	}
+	
+}
+
+
+/*_____media @1200______media @1200______media @1200______media @1200______media @1200______media @1200______media @1200___*/
+@media (min-width: 1200px)
+{
+/*_____header__________________________________________*/
+
+
+	header nav ul{
+		grid-template-columns: none;
+	}
+
+	header nav ul{
+		width: 1100px;
+	}
+
+	header nav li{
+		grid-row-end: 2;
+	}
+
+	
+
+/*--product-listing_______________________________________________________________________________________________________-----*/
+
+	.product-listing{
+		max-width: 900px;
+	}
+	
+
+	.product-listing .product-quick-ref figure {
+		max-width: 400px;
+	}
+
+	.product-listing .product-quick-ref{
+		justify-content: center;
+	}
+
+	.product-listing p{
+		grid-column: 1/2;
+	}
+	.product-listing .product-quick-ref h1{
+		padding-bottom: 50px;
+		justify-self: start;
+	}
+
+	.product-listing .product-quick-ref p{
+		grid-column: 1/3;
+		margin-top: 40px;
+	}
+
+	.product-listing .product-quick-ref figure{
+		grid-column: 1/2;
+		grid-row: 2/4;
+	}
+
+
+	.product-listing dl{
+		grid-column: 2/3;
+		grid-row: 2/3;
+		padding-bottom: 0;
+	}
+
+	.product-listing .product-quick-ref h2{
+		justify-self: start;
+		padding-top: 20px;
+	}
+
+	.product-listing .product-quick-ref p:first-of-type{
+		grid-column: 2/3;
+		grid-row: 3;
+	}
+
+	.product-listing dd:first-of-type{
+		justify-self: start;
+	}
+
+	.product-listing .product-listing h2{
+		justify-self: start;
+	}
+	
+	.how-made {
+		grid-template-columns: 1fr 1fr;
+		padding: 20px;
+		margin-bottom: 40px;
+	}
+
+	.how-made h2{
+	
+		grid-row: 1;
+	}
+
+	.how-made p{
+		padding-right: 20px;
+	}
+
+	#how-made-inline{
+		grid-column: 2/3;
+		grid-row: 4/6;
+	
+	}
+
+	.how-made figure{
+		grid-column: 1/3;
+		grid-row: 2;
+		justify-self: center;
+	}
+
+	.how-made img{
+		grid-column: 1/3;
+	}
+	
+	
+	/*--makertemplatepart----*/
+
+	.product-template-default .maker-quick-ref p {
+	grid-column: initial;
+  	}
+
+/*--index----_______________________________________________________________________________________________________*/
+
+	.home main{
+		max-width: 1200px;
+		margin-bottom: 60px;
+	}
+	
+  .home main div{
+		grid-template-columns: 1fr 1fr 1fr;
+
+	}
+
+	.home h2 + p {
+		grid-column: 1/3;
+	  }
+
+	.home .maker-quick-ref:last-of-type{
+		grid-column: initial;
+	}
+
+	.home .product-quick-ref:last-of-type{
+		grid-column: initial;
+	}
+
+
+	.home main {
+		display: grid;
+	}
+	#index-img {
+		grid-column: 1/2;
+		justify-self: end;
+		margin-right: 20px;
+		margin-bottom: 40px;
+	
+	}
+
+
+	#index-tag {
+	grid-column: 2/3;
+		width: 400px;
+		margin-left: 20px;
+		align-self: center;
+	}
+
+
+	.archive-page{
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.archive-page h1{
+		grid-column: 1/4;
+	}
+
+	.archive-page h1 ~ p{
+		grid-column: 1/4;
+	}
+
+}
+
+/*_____media @1400______media @1400______media @1400______media @1400______media @1400______media @1400______media @1400___*/
+@media (min-width: 1400px)
+{
+
+
+/*-- archive----event_______________________________________________________________________________________________________*/
+	
+	.archive-page .h-event{
+		grid-column: 1/5;
+	}
+}
+
+/*_____media @1700______media @1700______media @1700______media @1700______media @1700______media @1700______media @1700______media @1700______media @1700______media @1700______*/
+
+@media (min-width: 1750px)
+{	
+	
+	.archive-page{
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+
+	.archive-page h1{
+		grid-column: 1/5;
+	}
+
+	.archive-page h1 ~ p{
+		grid-column: 1/5;
+	}
+	
+}
+/* end of media queries_____________________________________________ ________________ _____________ _____________ ___________________________________________________*/
+
+
+/*--footer_______________________________________________________________________________________________________*/
+
+footer nav ul{
+	list-style:square;
+}
